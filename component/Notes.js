@@ -2,6 +2,14 @@ import React, { Component } from "react"
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from "./LogIn"
+import storeNotes from "../store/StoreNotes"
+import storeAuth from "../store/StoreAuth"
+import ArticleNotes from "./ArticleNotes"
+
+import { observer } from "mobx-react";
+
+
+
 import {
     SafeAreaView,
     StyleSheet,
@@ -11,29 +19,52 @@ import {
     StatusBar,
     TextInput,
     Button,
-    DrawerLayoutAndroidComponent,
+    DrawerLayoutAndroidComponent, 
+ 
 } from 'react-native';
 const Drawer = createDrawerNavigator();
 class Notes extends Component {
     constructor(props) {
         super(props);
+        this.openCreateActivity = this.openCreateActivity.bind(this);
+
+    }
+    openCreateActivity(){
+        this.props.navigation.navigate("Create")
+
     }
     render() {
-        console.log("render notes")
+
+        console.log("render start")
+        let arr = storeNotes.arrTask;
+     console.log("render notes")
+       console.log(arr+ " arr")
+
+        if (arr.length > 0) {
+            var tempNews = arr.map(function (item, index) {
+              return <View >
+                <ArticleNotes art={item} token={storeAuth.token} />
+              </View>
+            });
+          } else {
+          tempNews = <Text>заметок нету + {storeNotes.arrTask}</Text>
+          }
         return (
             <View>
-                <Text>
-                 its mnotes
-                </Text>
 
+            <Button title = "create task" onPress = {this.openCreateActivity}/>
+            <ScrollView>
+
+            <View>
+                
+                {tempNews}
+            
         
-           
-            {/* <Drawer.Navigator initialRouteName="Home">
-              <Drawer.Screen name="Login" component={Login} />
-              <Drawer.Screen name="Home" component={Notes} />
-            </Drawer.Navigator> */}
+
             </View>
+            </ScrollView>
         
+            </View>
         
                
         
@@ -42,4 +73,4 @@ class Notes extends Component {
     }
 
 }
-export default Notes;
+export default observer(Notes);

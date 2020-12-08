@@ -1,5 +1,6 @@
 export default async function makeRequest(reqApi, form, method) {
     console.log("THIS IS TOKEN ")
+    console.log(reqApi)
     let response;
     let reqBody;
     try {

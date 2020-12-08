@@ -59,6 +59,7 @@ class RegsitrActivity extends Component {
     }
 registrate(){
     store.registr(this.state.login, this.state.pass).then(data => {
+        console.log("REGIST " + data)
         if(data!==false){
             this.props.navigation.navigate("Login") 
 

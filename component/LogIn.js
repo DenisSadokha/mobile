@@ -56,26 +56,10 @@ class LoginActivity extends Component{
     }
 
     logIn(){
-        store.logIn(this.state.login, this.state.pass).then(data => {
-            if(data!==false){
-                
-            }
-             
-        })
+        store.logIn(this.state.login, this.state.pass);
     }
     render(){
-        if(store.isAuth){
-            return (
-                <View>
-
-                <Text>вы уже вошли</Text>
-                <Button title = "Перейти к заметкам" onPress = {() =>this.props.navigation.navigate("Notes")}>
-                </Button> 
-                </View>
-
-    
-            )
-        }
+       
         return (
         
             <View>
