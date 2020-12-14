@@ -3,10 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import RegistrActivity from './component/Registr';
-import LoginActivity from './component/LogIn';
-import Nav from './Navig';
-import App from './App';
+import Nav from './src/component/Navig';
 
 
 
